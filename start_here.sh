@@ -1,11 +1,39 @@
 #!/bin/bash
 # Enable poetry if not running inside docker and poetry is installed
-if [[ $HOSTNAME != "docker-"* ]] && (hash poetry 2>/dev/null); then
+if [[ $HOSTNAME != "docker-"* ]] && (hash poetry 2>/dev/null) ; then
     run_command="poetry run"
 fi
 
 conferences=(
-    "usenix 2024"
+    # "ndss 1997"
+    # "ndss 1998"
+    # "ndss 1999"
+    # "ndss 2000"
+    # "ndss 2001"
+    # "ndss 2002"
+    # "ndss 2003"
+    # "ndss 2004"
+    # "ndss 2005"
+    # "ndss 2006"
+    # "ndss 2007"
+    # "ndss 2008"
+    # "ndss 2009"
+    # "ndss 2010"
+    # "ndss 2011"
+    # "ndss 2012"
+    # "ndss 2013"
+    # "ndss 2014"
+    # "ndss 2015"
+    # "ndss 2016"
+    # "ndss 2017"
+    # "ndss 2019"
+    # "ndss 2020"
+    # "ndss 2021"
+    # "ndss 2022"
+    # "ndss 2023"
+    # "ndss 2024"
+    "ndss 2025"
+    #"usenix 2024"
     # "aaai 2017 old_style no_subpage"
     # "aaai 2018 old_style no_subpage"
     # "aaai 2019 no_subpage"
@@ -220,6 +248,8 @@ for conference in "${conferences[@]}"; do
         $run_command scrapy crawl mlr_press -s LOG_LEVEL=INFO -a conference=${conf_year[0]} -a year=${conf_year[1]}
     elif [[ ${conf_year[0]} == "usenix" ]]; then
         $run_command scrapy crawl usenix -s LOG_LEVEL=INFO -a conference=${conf_year[0]} -a year=${conf_year[1]}
+    elif [[ ${conf_year[0]} == "ndss" ]]; then
+        $run_command scrapy crawl ndss -s LOG_LEVEL=INFO -a conference=${conf_year[0]} -a year=${conf_year[1]}
     elif [[ ${conf_year[0]} != "iclr" ]]; then # eccv, ijcai, or neurips
         $run_command scrapy crawl ${conf_year[0]} -s LOG_LEVEL=INFO -a year=${conf_year[1]}
     fi
