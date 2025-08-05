@@ -6,7 +6,7 @@
 
 DOCKERFILE_CONTEXT = $(PWD)
 DOCKERFILE = $(PWD)/Dockerfile
-DATA_DIR = $(HOME)/datasets/ai_papers
+DATA_DIR = $(HOME)/ansaf/datasets/ai_papers
 WORK_DIR = $(PWD)
 RUN_STRING = bash start_here.sh
 

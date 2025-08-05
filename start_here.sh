@@ -5,6 +5,7 @@ if [[ $HOSTNAME != "docker-"* ]] && (hash poetry 2>/dev/null) ; then
 fi
 
 conferences=(
+    "osdi 2023"
     # "ndss 1997"
     # "ndss 1998"
     # "ndss 1999"
@@ -32,7 +33,7 @@ conferences=(
     # "ndss 2022"
     # "ndss 2023"
     # "ndss 2024"
-    "ndss 2025"
+    # "ndss 2025"
     #"usenix 2024"
     # "aaai 2017 old_style no_subpage"
     # "aaai 2018 old_style no_subpage"
@@ -205,6 +206,7 @@ conferences=(
     # "wacv 2023 no_subpage"
     # "wacv 2024 no_subpage"
     # "wacv 2025 no_subpage"
+    
 )
 
 # update_papers_with_code=1
@@ -234,6 +236,8 @@ for conference in "${conferences[@]}"; do
         else
             $run_command scrapy crawl aaai -s LOG_LEVEL=INFO -a conference=${conf_year[0]} -a year=${conf_year[1]}
         fi
+    elif [[ ${conf_year[0]} == "osdi" ]]; then
+        $run_command scrapy crawl osdi -s LOG_LEVEL=INFO -a conference=${conf_year[0]} -a year=${conf_year[1]}
     elif [[ ${conf_year[0]} == "siggraph" ]] || [[ ${conf_year[0]} == "siggraph-asia" ]]; then
         $run_command scrapy crawl siggraph -s LOG_LEVEL=INFO -a conference=${conf_year[0]} -a year=${conf_year[1]}
     elif [[ " ${acl_conferences[*]} " =~ " ${conf_year[0]} " ]]; then
